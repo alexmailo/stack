@@ -14,8 +14,8 @@ impl Stack {
     fn len(&self) -> usize {
         self.items.len()
     }
-    fn pop(&mut self) -> i32 {
-        self.items.remove(0)
+    fn pop(&mut self) -> Option<i32>  {
+        self.items.pop()
     }
     fn new() -> Self {
         Self { items: vec![] }
@@ -83,9 +83,9 @@ fn main() {
                     s.clear();
                     continue;
                 }
-                let a = stack.pop();
-                let b = stack.pop();
 
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
                 stack.push((a > b) as i32);
             }
             "less" => {
@@ -94,9 +94,9 @@ fn main() {
                     s.clear();
                     continue;
                 }
-                let a = stack.pop();
-                let b = stack.pop();
 
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
                 stack.push((a < b) as i32);
             } 
             "equal" => {
@@ -105,8 +105,8 @@ fn main() {
                     s.clear();
                     continue;
                 }
-                let a = stack.pop();
-                let b = stack.pop();
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
 
                 stack.push((a == b) as i32);
             }
@@ -118,8 +118,8 @@ fn main() {
                     s.clear();
                     continue;
                 }
-                let a = stack.pop();
-                let b = stack.pop();
+                let a = stack.pop().unwrap();
+                let b = stack.pop().unwrap();
                 stack.push(match s2.as_str() {
                     "+" => a + b,
                     "-" => a - b,
